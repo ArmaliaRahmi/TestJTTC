@@ -16,7 +16,7 @@ if( isset($_POST["proses"]) ){
         echo "
             <script>
                 alert('Data Berhasil Ditambahkan!!');
-                document.location.href = 'datapeggawai.php';
+                document.location.href = 'datapegawai.php';
             </script>
         ";
     }
