@@ -1,26 +1,17 @@
 <?php 
-
-//koneksi ke database
 $conn = mysqli_connect("localhost:8080", "root", "", "testjttc");
 
-//cek apakah tombol proses sudah ditekan atau belum
 if( isset($_POST["proses"]) ){
-
-    // ambil data dari tiap elemen dalam form
-        //htmpspecialchars() = berfungsi apabila ada kode html masuk dalam data akan dijadikan tulisan biasa dan tidak dieksekusi
     $id_pegawai = htmlspecialchars($_POST["id_pegawai"]);
     $nama_pegawai = htmlspecialchars($_POST["nama_pegawai"]);
     $jabatan_pegawai = htmlspecialchars($_POST["jabatan_pegawai"]);
     $kontrak_pegawai = htmlspecialchars($_POST["kontrak_pegawai"]);
 
-    //query insert data
-    $query = "INSERT INTO mhs
+    $query = "INSERT INTO pegawai.id_pegawai, pegawai.nama_pegawai, jabatan_pegawai.jabatan_pegawai, kontrak.kontrak_pegawai FROM pegawai AS pegawai LEFT JOIN jabatan_pegawai AS jabatan_pegawai ON pegawai.id_pegawai=jabatan_pegawai.id_pegawai LEFT JOIN kontrak AS kontrak ON pegawai.id_pegawai = kontrak.id_pegawai (pegawai.id_pegawai, pegawai.nama_pegawai, jabatan_pegawai.jabatan_pegawai, kontrak.kontrak_pegawai) VALUES ('id_pegawai','.$nama_pegawai','.$jabatan_pegawai.','.$kontrak_pegawai.');
                 VALUES
             ('id_pegawai', '$nama_pegawai', '$jabatan_pegawai', '$kontrak_pegawai')";
-    
     mysqli_query($conn, $query);
 
-    //cek keberhasilan penambahan data
     if(mysqli_affected_rows($conn) > 0){
         echo "
             <script>
@@ -41,7 +32,6 @@ if( isset($_POST["proses"]) ){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +43,6 @@ if( isset($_POST["proses"]) ){
 
    <form action = "" method = "post">
        <table>
-            <!--required = apabila input data kosong program tidak bisa disubmit-->
             <tr>
                 <td>Id Pegawai</td>
                 <td> <input type="text" name="Id_pegawai" required></td>
