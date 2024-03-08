@@ -4,7 +4,7 @@
 $conn = mysqli_connect("localhost:8080", "root", "", "testjttc");
 
 //ambil data dari tabel mahasiswa
-$result = mysqli_query($conn, "SELECT * FROM pegawai, jabatan_pegawai, kontrak");
+$result = mysqli_query($conn, "SELECT pegawai.id_pegawai, pegawai.nama_pegawai, jabatan_pegawai.jabatan_pegawai, kontrak.kontrak_pegawai FROM pegawai AS pegawai LEFT JOIN jabatan_pegawai AS jabatan_pegawai ON pegawai.id_pegawai=jabatan_pegawai.id_pegawai LEFT JOIN kontrak AS kontrak ON pegawai.id_pegawai = kontrak.id_pegawai");
 
 ?>
 
