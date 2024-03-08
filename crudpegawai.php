@@ -1,7 +1,7 @@
 <?php 
 
 //koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "testjttc");
+$conn = mysqli_connect("localhost:8080", "root", "", "testjttc");
 
 //cek apakah tombol proses sudah ditekan atau belum
 if( isset($_POST["proses"]) ){
